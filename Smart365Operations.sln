@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart365Operations.Client", "Smart365Operations.Client\Smart365Operations.Client.csproj", "{CD6E321E-3A48-4500-8FD8-2B669905522F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Smart365Operations.Common", "Smart365Operations.Common", "{9616E35D-98D8-4C25-AE59-D7B22C5DE2A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Smart365Operation.Modules", "Smart365Operation.Modules", "{36073197-EF3C-45E2-94C6-BF90920F739A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart365Operations.Common.Infrastructure", "Smart365Operations.Common.Infrastructure\Smart365Operations.Common.Infrastructure.csproj", "{1E3DFF34-87E3-4C24-B123-55F90F85D7F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart365Operation.Modules.Dashboard", "Smart365Operation.Modules.Dashboard\Smart365Operation.Modules.Dashboard.csproj", "{8FC49DA2-5236-4826-B5E5-C1D927277FA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD6E321E-3A48-4500-8FD8-2B669905522F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6E321E-3A48-4500-8FD8-2B669905522F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6E321E-3A48-4500-8FD8-2B669905522F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6E321E-3A48-4500-8FD8-2B669905522F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E3DFF34-87E3-4C24-B123-55F90F85D7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E3DFF34-87E3-4C24-B123-55F90F85D7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E3DFF34-87E3-4C24-B123-55F90F85D7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E3DFF34-87E3-4C24-B123-55F90F85D7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC49DA2-5236-4826-B5E5-C1D927277FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC49DA2-5236-4826-B5E5-C1D927277FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC49DA2-5236-4826-B5E5-C1D927277FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC49DA2-5236-4826-B5E5-C1D927277FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1E3DFF34-87E3-4C24-B123-55F90F85D7F4} = {9616E35D-98D8-4C25-AE59-D7B22C5DE2A5}
+		{8FC49DA2-5236-4826-B5E5-C1D927277FA3} = {36073197-EF3C-45E2-94C6-BF90920F739A}
+	EndGlobalSection
+EndGlobal
