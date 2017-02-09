@@ -12,7 +12,7 @@ namespace Smart365Operations.Client.Services
     {
         public User AuthenticateUser(string username, string password)
         {
-            return new User(username, "{username}@126.com", new string[] {"Administrators"});
+            throw new NotImplementedException();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Smart365Operations.Client
 
         protected override void ConfigureContainer()
         {
-            Container.RegisterType<IAuthenticationService, AuthenticationService>();
+            Container.RegisterType<IAuthenticationService, MockAuthenticationService>();
             Container.RegisterType<IDialogService, DialogService>(new ContainerControlledLifetimeManager());
             base.ConfigureContainer();
         }

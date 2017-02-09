@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Smart365Operations.Client.Views"
         xmlns:utility="clr-namespace:Smart365Operations.Common.Infrastructure.Utility;assembly=Smart365Operations.Common.Infrastructure"
         mc:Ignorable="d"
+        Name="LoginView"
         Title="LoginScreen"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
@@ -99,7 +100,7 @@
                     VerticalAlignment="Bottom"
                     Margin="5"
                     HorizontalAlignment="Right" Height="Auto">
-            <Button Content="登录" IsDefault="True" Command="{Binding LoginCommand}"/>
+            <Button Content="登录" IsDefault="True" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=LoginView}"/>
             <Button Content="取消" IsCancel="True"/>
         </StackPanel>
 

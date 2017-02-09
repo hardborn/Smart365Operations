@@ -16,11 +16,10 @@ namespace Smart365Operations.Client.ViewModels
     public class AuthenticationViewModel : BindableBase, IViewModel
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly IDialogService _dialogService;
-        public AuthenticationViewModel(IDialogService dialogService, IAuthenticationService authenticationService)
+        public AuthenticationViewModel(IAuthenticationService authenticationService)
         {
-            _dialogService = dialogService;
             _authenticationService = authenticationService;
+            
         }
 
         private string _userName;
@@ -51,15 +50,15 @@ namespace Smart365Operations.Client.ViewModels
             private set { SetProperty(ref _isAuthenticated, value); }
         }
 
-        private DelegateCommand _loginCommand;
-        public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(Login, CanLogin));
+        private DelegateCommand<object> _loginCommand;
+        public DelegateCommand<object> LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand<object>(Login, view => CanLogin()));
 
         private bool CanLogin()
         {
             return !IsAuthenticated;
         }
 
-        private void Login()
+        private void Login(object view)
         {
             try
             {
@@ -73,21 +72,10 @@ namespace Smart365Operations.Client.ViewModels
 
                 //Authenticate the user
                 customPrincipal.Identity = new CustomIdentity(user.Username, user.Email, user.Roles);
-
-                //Update UI
-                //NotifyPropertyChanged("AuthenticatedUser");
-                //NotifyPropertyChanged("IsAuthenticated");
+                
                 _loginCommand.RaiseCanExecuteChanged();
-                var windows = System.Windows.Application.Current.Windows;
-                //for (var i = 0; i < windows.Count; i++)
-                //{
-                //    if (windows[i].DataContext == this)
-                //        _dialogService.Close(windows[i]);
-                //}
-                //_logoutCommand.RaiseCanExecuteChanged();
-                //Username = string.Empty; //reset
-                //passwordBox.Password = string.Empty; //reset
-                //Status = string.Empty;
+                IView loginView = view as IView;
+                loginView.Close();
             }
             catch (UnauthorizedAccessException)
             {

@@ -10,5 +10,6 @@ namespace Smart365Operations.Common.Infrastructure.Interfaces
     {
         IViewModel ViewModel { get; set; }
         void Show();
+        void Close();
     }
 }

@@ -11,23 +11,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Smart365Operations.Common.Infrastructure.Interfaces;
 
 namespace Smart365Operations.Client.Views
 {
     /// <summary>
     /// LoginScreen.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginScreen : Window
+    public partial class LoginScreen : Window, IView
     {
         public LoginScreen()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public IViewModel ViewModel
         {
-            this.DialogResult = true;
-            this.Close();
+            get { return DataContext as IViewModel; }
+            set { DataContext = value; }
         }
     }
 }

@@ -30,17 +30,14 @@ namespace Smart365Operations.Client
             bootStrapper.Run();
 
             ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-            IDialogService dialogService =
-                bootStrapper.Container.Resolve(typeof(IDialogService)) as IDialogService;
-
+            
             LoginScreen loginWindow = new LoginScreen();
             AuthenticationViewModel viewModel =
-                new AuthenticationViewModel(bootStrapper.Container.Resolve(typeof(IDialogService)) as IDialogService, bootStrapper.Container.Resolve(typeof(IAuthenticationService)) as IAuthenticationService);
+                new AuthenticationViewModel(bootStrapper.Container.Resolve(typeof(IAuthenticationService)) as IAuthenticationService);
             loginWindow.DataContext = viewModel;
             bool? logonResult = loginWindow.ShowDialog();
 
-            if (logonResult.HasValue && logonResult.Value)
+            if (logonResult.HasValue && viewModel.IsAuthenticated)
             {
                 bootStrapper.Show();
                 Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
