@@ -11,8 +11,8 @@ namespace Smart365Operation.Modules.Dashboard
 {
     public class DashboardModule : IModule
     {
-        private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _container;
+        private readonly IRegionManager _regionManager;
 
         public DashboardModule(IUnityContainer container, IRegionManager regionManager)
         {
@@ -22,7 +22,6 @@ namespace Smart365Operation.Modules.Dashboard
 
         public void Initialize()
         {
-            //throw new NotImplementedException();
         }
     }
 }

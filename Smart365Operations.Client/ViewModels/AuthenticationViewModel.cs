@@ -62,7 +62,6 @@ namespace Smart365Operations.Client.ViewModels
         {
             try
             {
-                //Validate credentials(证书) through the authentication service
                 User user = _authenticationService.AuthenticateUser(UserName, Password);
 
                 //Get the current principal object

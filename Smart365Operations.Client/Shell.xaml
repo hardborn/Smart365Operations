@@ -4,11 +4,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Smart365Operations.Client"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dashboard="clr-namespace:Smart365Operation.Modules.Dashboard.Views;assembly=Smart365Operation.Modules.Dashboard"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title=""
         WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}"
         Height="350" Width="525">
-    <Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.green.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.green.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MainMenuToggleButton, Path=IsChecked}">
         
-    </Grid>
+        <materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel MinWidth="212">
+                <ToggleButton Name="MenuCloseToggleButton"
+                              Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                              DockPanel.Dock="Top"
+                              HorizontalAlignment="Right" Margin="16"
+                              IsChecked="{Binding Source={x:Reference MainMenuToggleButton}, Path=IsChecked, Mode=TwoWay}" />
+                <ListBox Margin="0 16 0 16" SelectedIndex="0">
+
+                </ListBox>
+            </DockPanel>
+        </materialDesign:DrawerHost.LeftDrawerContent>
+        
+        <DockPanel>
+            <materialDesign:ColorZone Padding="10" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                          Mode="PrimaryMid" DockPanel.Dock="Top">
+                <DockPanel>
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False" Name="MainMenuToggleButton"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">365电力智能运维</TextBlock>
+                </DockPanel>
+            </materialDesign:ColorZone>
+            <ContentControl>
+                <dashboard:OverviewMapView />
+            </ContentControl>
+        </DockPanel>
+       
+        
+    </materialDesign:DrawerHost>
 </Window>
