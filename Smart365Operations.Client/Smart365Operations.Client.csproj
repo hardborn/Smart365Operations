@@ -14,7 +14,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <AssemblyVersion>1.0.17046.0800</AssemblyVersion>
+    <AssemblyVersion>1.0.17052.0124</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,6 +64,10 @@
       <HintPath>..\packages\MvvmDialogs.4.0.0\lib\net45\MvvmDialogs.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
       <Private>True</Private>
@@ -74,6 +78,10 @@
     </Reference>
     <Reference Include="Prism.Wpf, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -158,6 +166,10 @@
     <ProjectReference Include="..\Smart365Operation.Modules.Dashboard\Smart365Operation.Modules.Dashboard.csproj">
       <Project>{8fc49da2-5236-4826-b5e5-c1d927277fa3}</Project>
       <Name>Smart365Operation.Modules.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smart365Operation.Modules.VideoMonitoring\Smart365Operation.Modules.VideoMonitoring.csproj">
+      <Project>{cb0e2352-8154-4ec3-8be4-ab7f358bcc27}</Project>
+      <Name>Smart365Operation.Modules.VideoMonitoring</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smart365Operations.Common.Infrastructure\Smart365Operations.Common.Infrastructure.csproj">
       <Project>{1e3dff34-87e3-4c24-b123-55f90f85d7f4}</Project>

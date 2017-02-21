@@ -9,6 +9,7 @@ using System.Windows;
 using Microsoft.Practices.Unity;
 using MvvmDialogs;
 using Prism.Modularity;
+using Smart365Operation.Modules.VideoMonitoring.Services;
 using Smart365Operations.Client.Services;
 using Smart365Operations.Common.Infrastructure.Interfaces;
 
@@ -46,8 +47,10 @@ namespace Smart365Operations.Client
 
         protected override void ConfigureContainer()
         {
-            Container.RegisterType<IAuthenticationService, MockAuthenticationService>();
+            Container.RegisterType<IAuthenticationService, AuthenticationService>();
             Container.RegisterType<IDialogService, DialogService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<ICameraService, CameraService>();
+            Container.RegisterType<ICustomerService, CustomerService>();
             base.ConfigureContainer();
         }
     }

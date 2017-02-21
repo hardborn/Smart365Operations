@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Smart365Operation.Modules.VideoMonitoring.VideoMonitoringView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Smart365Operation.Modules.VideoMonitoring"
+             xmlns:converters="clr-namespace:Smart365Operation.Modules.VideoMonitoring.Converters"
+             xmlns:viewModels="clr-namespace:Smart365Operation.Modules.VideoMonitoring.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ModeToVisibilityConverter x:Key="ModeToVisibilityConverter"/>
+        <HierarchicalDataTemplate DataType="{x:Type viewModels:CustomerViewModel}" ItemsSource = "{Binding CameraList}">
+            <TextBlock Text="{Binding Name}"/>
+        </HierarchicalDataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CameraViewModel}">
+            <Button Content="{Binding CameraName}" Command="{Binding PlayVideoCommand}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="Auto" MinHeight="30"/>-->
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TreeView ItemsSource="{Binding CustomerList}" Margin="0" Grid.Row="0" Padding="1"/>
+        <!--<Menu x:Name="menu" Margin="0" Grid.ColumnSpan="2">
+            <MenuItem Header="File" VerticalAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="17.75,0.971" HorizontalAlignment="Right" Height="26"/>
+        </Menu>-->
+        <!--<StatusBar Margin="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" FlowDirection="RightToLeft">
+            <Button Content="停止" Command="{Binding PlayStopAllCommand}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
+            <Button Content="9-画面" Command="{Binding NineContentCommand}" CommandParameter="{Binding ElementName=NineDisplayVideo}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
+            <Button Content="4-画面" Command="{Binding FourContentCommand}" CommandParameter="{Binding ElementName=FourDisplayVideo}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
+            <Button Content="1-画面" Command="{Binding OneContentCommand}" CommandParameter="{Binding ElementName=OneDisplayVideo}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
+        </StatusBar>-->
+        <!--<Grid Grid.Row="1" Grid.Column="1" >
+            --><!--<src:OneContenter x:Name="OneDisplayVideo" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Mode,Converter={StaticResource ModeToVisibilityConverter},ConverterParameter=One }" Padding="2,2,0,2"/>
+            <src:FourContenter x:Name="FourDisplayVideo" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Mode,Converter={StaticResource ModeToVisibilityConverter},ConverterParameter=Four }" Padding="2,2,0,2"/>
+            <src:CameraDisplayControl />--><!--
+        </Grid>-->
+    </Grid>
+</UserControl>
