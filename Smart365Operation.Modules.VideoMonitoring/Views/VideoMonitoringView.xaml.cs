@@ -23,18 +23,10 @@ namespace Smart365Operation.Modules.VideoMonitoring
     /// </summary>
     public partial class VideoMonitoringView : UserControl
     {
-        public VideoMonitoringView()
+        public VideoMonitoringView(VideoMonitoringViewModel viewModel)
         {
             InitializeComponent();
-            this.Loaded += VideoMonitoringView_Loaded;
-          
-        }
-
-        private void VideoMonitoringView_Loaded(object sender, RoutedEventArgs e)
-        {
-            var customerService = ServiceLocator.Current.GetInstance<ICustomerService>();
-            var cameraService = ServiceLocator.Current.GetInstance<ICameraService>();
-            this.DataContext = new VideoMonitoringViewModel(customerService, cameraService);
+            this.DataContext = viewModel;
         }
     }
 }

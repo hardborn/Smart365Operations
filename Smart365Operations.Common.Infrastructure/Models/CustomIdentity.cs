@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace Smart365Operations.Common.Infrastructure.Models
 {
-    public class CustomIdentity : IIdentity
+    public class SystemIdentity : IIdentity
     {
-        public CustomIdentity(string name, string email, string[] roles)
+        public SystemIdentity(string id,string name, string email, string[] roles)
         {
+            Id = id;
             Name = name;
             Email = email;
             Roles = roles;
         }
+
+        public string Id { get; set; }
 
         public string Email { get; private set; }
         public string[] Roles { get; private set; }

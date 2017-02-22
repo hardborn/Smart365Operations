@@ -17,14 +17,12 @@ namespace Smart365Operation.Modules.VideoMonitoring.Services
     {
         public IList<Customer> GetCustomersBy(int agentId)
         {
-            List<Customer> customerList = new List<Customer>();
-            //var httpClient = new RestClient("http://192.168.8.250:8088/365ElectricGuard");
+            var httpServiceApi = new DataServiceApi();
             var request = new RestRequest($"customer/list.json", Method.GET);
-            var response = RestAPIClient.GetInstance().Execute(request);
+            var customerDtoList = httpServiceApi.Execute<List<CustomerDTO>>(request);
 
-            var value = JsonConvert.DeserializeObject(response.Content) as JObject;
-            var customerDtoList = value.First.First.ToObject<List<CustomerDTO>>();
 
+            IList<Customer> customerList = new List<Customer>();
             foreach (var customerDto in customerDtoList)
             {
                 Customer customer = new Customer()

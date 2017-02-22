@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Smart365Operations.Client.ViewModels;
 using Smart365Operations.Common.Infrastructure.Interfaces;
 
 namespace Smart365Operations.Client.Views
@@ -20,9 +21,10 @@ namespace Smart365Operations.Client.Views
     /// </summary>
     public partial class LoginScreen : Window, IView
     {
-        public LoginScreen()
+        public LoginScreen(AuthenticationViewModel viewModel)
         {
             InitializeComponent();
+            this.DataContext = viewModel;
         }
 
         public IViewModel ViewModel

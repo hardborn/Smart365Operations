@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using Prism.Modularity;
 using Prism.Regions;
+using Smart365Operation.Modules.VideoMonitoring.Services;
+using Smart365Operations.Common.Infrastructure.Interfaces;
 
 namespace Smart365Operation.Modules.VideoMonitoring
 {
@@ -21,7 +23,10 @@ namespace Smart365Operation.Modules.VideoMonitoring
         }
         public void Initialize()
         {
-           
+            this._container.RegisterType<ICustomerService, CustomerService>();
+            this._container.RegisterType<ICameraService, CameraService>();
+            this._regionManager.RegisterViewWithRegion("MainRegion", () => this._container.Resolve<VideoMonitoringView>());
+
         }
     }
 }

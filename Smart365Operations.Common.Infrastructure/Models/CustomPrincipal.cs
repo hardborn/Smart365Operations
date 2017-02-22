@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Smart365Operations.Common.Infrastructure.Models
 {
-    public class CustomPrincipal : IPrincipal
+    public class SystemPrincipal : IPrincipal
     {
-        private CustomIdentity _identity;
+        private SystemIdentity _identity;
 
-        public CustomIdentity Identity
+        public SystemIdentity Identity
         {
-            get { return _identity ?? new AnonymousIdentity();  }
+            get { return _identity ?? new AnonymousIdentity(); }
             set { _identity = value; }
         }
 

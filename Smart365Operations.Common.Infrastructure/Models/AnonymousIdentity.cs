@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Smart365Operations.Common.Infrastructure.Models
 {
-    public class AnonymousIdentity : CustomIdentity
+    public class AnonymousIdentity : SystemIdentity
     {
         public AnonymousIdentity()
-            : base(string.Empty, string.Empty, new string[] { })
+            : base(string.Empty,string.Empty, string.Empty, new string[] { })
         { }
     }
 }

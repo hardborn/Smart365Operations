@@ -9,6 +9,11 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding InitializeCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <UserControl.Resources>
         <converters:ModeToVisibilityConverter x:Key="ModeToVisibilityConverter" />
         <HierarchicalDataTemplate DataType="{x:Type viewModels:CustomerViewModel}" ItemsSource="{Binding CameraList}">

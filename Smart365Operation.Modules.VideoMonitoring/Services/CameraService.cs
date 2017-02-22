@@ -30,26 +30,21 @@ namespace Smart365Operation.Modules.VideoMonitoring.Services
         {
             List<Camera> cameraList = new List<Camera>();
 
-            // var httpClient = new RestClient("http://192.168.8.250:8088/365ElectricGuard");
+            var httpServiceApi = new DataServiceApi();
             var request = new RestRequest($"customer/videolist.json?customerId={customerId}", Method.GET);
-            var response = RestAPIClient.GetInstance().Execute(request);
-
-            var value = JsonConvert.DeserializeObject(response.Content) as JObject;
-            var cameraPartOneList = value.First.First.First.First.ToObject<List<CameraPartOne>>();
-
-
+            var cameraPartOne = httpServiceApi.Execute<CameraPartOne>(request);
 
             var cameraPartTwoJson = HkAction.playList();
             var dto = JsonConvert.DeserializeObject<CameraPartTwo>(cameraPartTwoJson);
-            foreach (var cameraPartOne in cameraPartOneList)
+            foreach (var videoInfo in cameraPartOne.video)
             {
-                var cameraPartTwo = dto.cameras.FirstOrDefault(camera => camera.deviceSerial == cameraPartOne.videoSequence && camera.cameraNo.ToString() == cameraPartOne.videoChannel);
+                var cameraPartTwo = dto.cameras.FirstOrDefault(camera => camera.deviceSerial == videoInfo.videoSequence && camera.cameraNo.ToString() == videoInfo.videoChannel);
                 if (cameraPartTwo != null)
                 {
                     Camera camera = new Camera()
                     {
                         Id = cameraPartTwo.cameraId,
-                        Name = cameraPartOne.videoName,
+                        Name = videoInfo.videoName,
                         Status = cameraPartTwo.status
                     };
                     cameraList.Add(camera);

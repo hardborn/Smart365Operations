@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using Microsoft.Practices.Unity;
 using MvvmDialogs;
 using Prism.Commands;
+using Prism.Logging;
 using Prism.Mvvm;
 using Smart365Operations.Common.Infrastructure.Interfaces;
 using Smart365Operations.Common.Infrastructure.Models;
@@ -15,12 +17,15 @@ namespace Smart365Operations.Client.ViewModels
 {
     public class AuthenticationViewModel : BindableBase, IViewModel
     {
+
         private readonly IAuthenticationService _authenticationService;
         public AuthenticationViewModel(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
-            
         }
+
+        [Dependency]
+        public ILoggerFacade Logger { get; set; }
 
         private string _userName;
         public string UserName
@@ -63,29 +68,34 @@ namespace Smart365Operations.Client.ViewModels
             try
             {
                 User user = _authenticationService.AuthenticateUser(UserName, Password);
-
+                Logger.Log($"User:{UserName} Password:{Password}", Category.Debug, Priority.Medium);
                 //Get the current principal object
-                CustomPrincipal customPrincipal = Thread.CurrentPrincipal as CustomPrincipal;
+                SystemPrincipal customPrincipal = Thread.CurrentPrincipal as SystemPrincipal;
                 if (customPrincipal == null)
+                {
+                    Logger.Log(
+                        $"The application\'s default thread principal must be set to a CustomPrincipal object on startup",
+                        Category.Exception, Priority.High);
                     throw new ArgumentException("The application's default thread principal must be set to a CustomPrincipal object on startup.");
+                }
 
                 //Authenticate the user
-                customPrincipal.Identity = new CustomIdentity(user.Username, user.Email, user.Roles);
-                
+                customPrincipal.Identity = new SystemIdentity(user.Id, user.Username, user.Email, user.Roles);
+
                 _loginCommand.RaiseCanExecuteChanged();
                 IView loginView = view as IView;
                 loginView.Close();
             }
             catch (UnauthorizedAccessException)
             {
-                //Status = "Login failed! Please provide some valid credentials(证书).";
+                Logger.Log($"Login failed! Please provide some valid credentials", Category.Exception, Priority.High);
             }
             catch (Exception ex)
             {
-               // Status = string.Format("ERROR: {0}", ex.Message);
+                Logger.Log($"ERROR: {ex.Message}", Category.Exception, Priority.High);
             }
         }
 
-        
+
     }
 }

@@ -18,24 +18,11 @@ namespace Smart365Operations.Client.Services
     {
         public User AuthenticateUser(string username, string password)
         {
-            
+            DataServiceApi httpServiceApi = new DataServiceApi();
             var request = new RestRequest($"login.json?username={username}&password={password}", Method.GET);
-            var response = RestAPIClient.GetInstance().Execute(request);
+            var loginInfo = httpServiceApi.Execute<LoginInfoDTO>(request);
 
-            CookieContainer cookiecon = new CookieContainer();
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var cookie = response.Cookies.FirstOrDefault();
-                cookiecon.Add(new Cookie(cookie.Name, cookie.Value, cookie.Path, cookie.Domain));
-            }
-            RestAPIClient.GetInstance().SetCookie(cookiecon);
-            var value =  JsonConvert.DeserializeObject(response.Content) as JObject;
-
-            var s = value.First;
-            var responseCode = value.Property("errorCode").Value.Value<int>();
-            // var valueItem = value.First.ToObject<Rootobject>();
-            return new User(username: username, email: "", roles: new string[] {"admin"});
+            return new User(id:loginInfo.userId.ToString(), username: username, email: "", roles: new string[] { loginInfo.userType });
         }
     }
 }

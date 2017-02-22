@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feeling.GIS.Map", "Feeling.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart365Operation.Modules.VideoMonitoring", "Smart365Operation.Modules.VideoMonitoring\Smart365Operation.Modules.VideoMonitoring.csproj", "{CB0E2352-8154-4EC3-8BE4-AB7F358BCC27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart365Operation.Modules.Log4NetLogger", "Smart365Operation.Modules.Log4NetLogger\Smart365Operation.Modules.Log4NetLogger.csproj", "{53EFCA7A-300C-4CA1-87D4-27EAD00E0674}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{CB0E2352-8154-4EC3-8BE4-AB7F358BCC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB0E2352-8154-4EC3-8BE4-AB7F358BCC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB0E2352-8154-4EC3-8BE4-AB7F358BCC27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53EFCA7A-300C-4CA1-87D4-27EAD00E0674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53EFCA7A-300C-4CA1-87D4-27EAD00E0674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53EFCA7A-300C-4CA1-87D4-27EAD00E0674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53EFCA7A-300C-4CA1-87D4-27EAD00E0674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +65,6 @@ Global
 		{8526B949-1A13-4EBD-8FB2-96935766ED5E} = {36073197-EF3C-45E2-94C6-BF90920F739A}
 		{54A47171-315B-4151-9A2B-0F37C3783288} = {9616E35D-98D8-4C25-AE59-D7B22C5DE2A5}
 		{CB0E2352-8154-4EC3-8BE4-AB7F358BCC27} = {36073197-EF3C-45E2-94C6-BF90920F739A}
+		{53EFCA7A-300C-4CA1-87D4-27EAD00E0674} = {36073197-EF3C-45E2-94C6-BF90920F739A}
 	EndGlobalSection
 EndGlobal

@@ -11,6 +11,7 @@ using Smart365Operations.Common.Infrastructure.Interfaces;
 using Smart365Operations.Common.Infrastructure.Models;
 using Microsoft.Practices.Unity;
 using MvvmDialogs;
+using Prism.Logging;
 
 namespace Smart365Operations.Client
 {
@@ -21,7 +22,7 @@ namespace Smart365Operations.Client
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            CustomPrincipal customPrincipal = new CustomPrincipal();
+            SystemPrincipal customPrincipal = new SystemPrincipal();
             AppDomain.CurrentDomain.SetThreadPrincipal(customPrincipal);
 
             base.OnStartup(e);
@@ -30,14 +31,14 @@ namespace Smart365Operations.Client
             bootStrapper.Run();
 
             ShutdownMode = ShutdownMode.OnExplicitShutdown;
-            
-            LoginScreen loginWindow = new LoginScreen();
-            AuthenticationViewModel viewModel =
-                new AuthenticationViewModel(bootStrapper.Container.Resolve(typeof(IAuthenticationService)) as IAuthenticationService);
-            loginWindow.DataContext = viewModel;
-            bool? logonResult = loginWindow.ShowDialog();
 
-            if (logonResult.HasValue && viewModel.IsAuthenticated)
+            LoginScreen loginWindow = bootStrapper.Container.Resolve<LoginScreen>();
+            //AuthenticationViewModel viewModel =
+            //    new AuthenticationViewModel(bootStrapper.Container.Resolve<IAuthenticationService>());
+            //loginWindow.DataContext = viewModel;
+            bool? logonResult = loginWindow.ShowDialog();
+            var viewModel = loginWindow.ViewModel as AuthenticationViewModel;
+            if (logonResult.HasValue && viewModel != null && viewModel.IsAuthenticated)
             {
                 bootStrapper.Show();
                 Current.ShutdownMode = ShutdownMode.OnMainWindowClose;

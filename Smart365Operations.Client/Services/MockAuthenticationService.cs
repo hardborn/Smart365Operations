@@ -13,13 +13,16 @@ namespace Smart365Operations.Client.Services
     {
         internal class InternalUserData
         {
-            public InternalUserData(string username, string email, string hashedPassword, string[] roles)
+            public InternalUserData(string id,string username, string email, string hashedPassword, string[] roles)
             {
+                Id = id;
                 Username = username;
                 Email = email;
                 HashedPassword = hashedPassword;
                 Roles = roles;
             }
+
+            public string Id { get; private set; }
             public string Username
             {
                 get;
@@ -47,7 +50,8 @@ namespace Smart365Operations.Client.Services
 
         private static readonly List<InternalUserData> Users = new List<InternalUserData>()
         {
-            new InternalUserData("admin",
+            new InternalUserData("1",
+                                 "admin",
                                  "admin@126.com",
                                  "gqefEbSstSpkLvfjOd/OSqkv9l7S56twLXmNvhDsoLg=",
                                  new string[] { "Administrators" })
@@ -58,7 +62,7 @@ namespace Smart365Operations.Client.Services
             if (userData == null)
                 throw new UnauthorizedAccessException("Access denied. Please provide some valid credentials(证书).");
 
-            return new User(userData.Username, userData.Email, userData.Roles);
+            return new User(userData.Id,userData.Username, userData.Email, userData.Roles);
         }
 
         private string CalculateHash(string clearTextPassword, string salt)

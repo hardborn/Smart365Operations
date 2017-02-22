@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Smart365Operations.Client"
+        xmlns:regions="http://prismlibrary.com/"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dashboard="clr-namespace:Smart365Operation.Modules.Dashboard.Views;assembly=Smart365Operation.Modules.Dashboard"
         xmlns:videoMonitoring="clr-namespace:Smart365Operation.Modules.VideoMonitoring;assembly=Smart365Operation.Modules.VideoMonitoring"
@@ -13,7 +14,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         Height="350" Width="525">
     <Window.Resources>
-        <ResourceDictionary>
+        <!--<ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
@@ -23,7 +24,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        </ResourceDictionary>-->
     </Window.Resources>
     <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MainMenuToggleButton, Path=IsChecked}">
         
@@ -48,10 +49,10 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">365电力智能运维</TextBlock>
                 </DockPanel>
             </materialDesign:ColorZone>
-            <ContentControl>
-                <!--<dashboard:OverviewMapView />-->
-                <videoMonitoring:VideoMonitoringView  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            </ContentControl>
+            <ContentControl x:Name="MainRegion"
+                            regions:RegionManager.RegionName="MainRegion"
+                            VerticalContentAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"/>
         </DockPanel>
        
         
