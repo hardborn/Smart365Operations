@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 using Prism.Mvvm;
 using Smart365Operations.Common.Infrastructure.Models;
 using System.Collections.ObjectModel;
+using Smart365Operation.Modules.VideoMonitoring.Services;
 
 namespace Smart365Operation.Modules.VideoMonitoring.ViewModels
 {
     public class CustomerViewModel : BindableBase
     {
+        private readonly IVideoService _videoService;
         private Customer _customer;
 
-        public CustomerViewModel(Customer customer, IList<Camera> cameraList)
+        public CustomerViewModel(IVideoService videoService, Customer customer, IList<Camera> cameraList)
         {
+            _videoService = videoService;
             this._customer = customer;
             this._name = _customer.Name;
             foreach (var camera in cameraList)
             {
-                CameraList.Add(new CameraViewModel(camera));
+                CameraList.Add(new CameraViewModel(_videoService,camera));
             }
         }
 

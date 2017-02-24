@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:Smart365Operation.Modules.VideoMonitoring"
              xmlns:converters="clr-namespace:Smart365Operation.Modules.VideoMonitoring.Converters"
              xmlns:viewModels="clr-namespace:Smart365Operation.Modules.VideoMonitoring.ViewModels"
+             xmlns:views="clr-namespace:Smart365Operation.Modules.VideoMonitoring.Views"
+             xmlns:models ="clr-namespace:Smart365Operation.Modules.VideoMonitoring.Models"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:regions="http://prismlibrary.com/"
+             xmlns:utility="clr-namespace:Smart365Operation.Modules.VideoMonitoring.Utility"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <i:Interaction.Triggers>
@@ -20,13 +25,14 @@
             <TextBlock Text="{Binding Name}" />
         </HierarchicalDataTemplate>
         <DataTemplate DataType="{x:Type viewModels:CameraViewModel}">
-            <TextBlock Text="{Binding CameraName}">
+            <Button Content="{Binding CameraName}" Command="{Binding PlayVideoCommand}"/>
+            <!--<TextBlock Text="{Binding CameraName}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding PlayVideoCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </TextBlock>
+            </TextBlock>-->
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -35,26 +41,13 @@
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <!--<RowDefinition Height="Auto" MinHeight="30"/>-->
+            <RowDefinition Height="auto" />
             <RowDefinition />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <TreeView ItemsSource="{Binding CustomerList}" Margin="0" Grid.Row="0" Padding="1" />
-        <!--<Menu x:Name="menu" Margin="0" Grid.ColumnSpan="2">
-            <MenuItem Header="File" VerticalAlignment="Center" HorizontalContentAlignment="Center" RenderTransformOrigin="17.75,0.971" HorizontalAlignment="Right" Height="26"/>
-        </Menu>-->
-        <!--<StatusBar Margin="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" FlowDirection="RightToLeft">
-            <Button Content="停止" Command="{Binding PlayStopAllCommand}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
-            <Button Content="9-画面" Command="{Binding NineContentCommand}" CommandParameter="{Binding ElementName=NineDisplayVideo}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
-            <Button Content="4-画面" Command="{Binding FourContentCommand}" CommandParameter="{Binding ElementName=FourDisplayVideo}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
-            <Button Content="1-画面" Command="{Binding OneContentCommand}" CommandParameter="{Binding ElementName=OneDisplayVideo}" Margin="10,0,0,0" FlowDirection="LeftToRight"/>
-        </StatusBar>-->
-        <!--<Grid Grid.Row="1" Grid.Column="1" >
-            -->
-        <!--<src:OneContenter x:Name="OneDisplayVideo" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Mode,Converter={StaticResource ModeToVisibilityConverter},ConverterParameter=One }" Padding="2,2,0,2"/>
-            <src:FourContenter x:Name="FourDisplayVideo" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Mode,Converter={StaticResource ModeToVisibilityConverter},ConverterParameter=Four }" Padding="2,2,0,2"/>
-            <src:CameraDisplayControl />-->
-        <!--
-        </Grid>-->
+        <TreeView ItemsSource="{Binding CustomerList}" Margin="0" Grid.Row="0" Grid.RowSpan="2" Padding="1" />
+        <!--<Viewbox Grid.Row="1" Grid.Column="1" Stretch="Fill" >-->
+            <views:VideoSurveillanceView Grid.Row="1" Grid.Column="1" DataContext="{Binding VideoSurveillance}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <!--</Viewbox>-->
+
     </Grid>
 </UserControl>

@@ -36,23 +36,23 @@ namespace Smart365Operation.Modules.VideoMonitoring.Services
 
             var cameraPartTwoJson = HkAction.playList();
             var dto = JsonConvert.DeserializeObject<CameraPartTwo>(cameraPartTwoJson);
-            foreach (var videoInfo in cameraPartOne.video)
+            if (dto != null)
             {
-                var cameraPartTwo = dto.cameras.FirstOrDefault(camera => camera.deviceSerial == videoInfo.videoSequence && camera.cameraNo.ToString() == videoInfo.videoChannel);
-                if (cameraPartTwo != null)
+                foreach (var videoInfo in cameraPartOne.video)
                 {
-                    Camera camera = new Camera()
+                    var cameraPartTwo = dto.cameras.FirstOrDefault(camera => camera.deviceSerial == videoInfo.videoSequence && camera.cameraNo.ToString() == videoInfo.videoChannel);
+                    if (cameraPartTwo != null)
                     {
-                        Id = cameraPartTwo.cameraId,
-                        Name = videoInfo.videoName,
-                        Status = cameraPartTwo.status
-                    };
-                    cameraList.Add(camera);
+                        Camera camera = new Camera()
+                        {
+                            Id = cameraPartTwo.cameraId,
+                            Name = videoInfo.videoName,
+                            Status = cameraPartTwo.status
+                        };
+                        cameraList.Add(camera);
+                    }
                 }
             }
-
-
-
             return cameraList;
         }
     }

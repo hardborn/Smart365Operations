@@ -21,7 +21,7 @@ namespace Smart365Operation.Modules.VideoMonitoring.Utility
         private static string AppKey = "b42937c70f3d491ca2083a03b97d3bec";//ConfigurationManager.AppSettings["AppKey"].ToString();
         private static string AuthAddr = "https://auth.ys7.com";
         public static bool IsLoaded = false;//记录登录状态
-        private static string PhoneNumber = "15249295796";//ConfigurationManager.AppSettings["PhoneNumber"].ToString();
+        private static string PhoneNumber = "15829253237";//ConfigurationManager.AppSettings["PhoneNumber"].ToString();
         private static string PlatformAddr = "https://open.ys7.com";
         private static string SecretKey = "ae59e1e816e77391f6ed5349836fc024";// ConfigurationManager.AppSettings["SecretKey"].ToString();
         public static IntPtr SessionId;

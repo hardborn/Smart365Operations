@@ -10,7 +10,7 @@ namespace Smart365Operations.Common.Infrastructure.Models.TO
     public class CameraPartTwo
     {
         [JsonProperty("cameraList")]
-        public CameraInfoDTO[] cameras{ get; set; }
+        public List<CameraInfoDTO> cameras { get; set; } = new List<CameraInfoDTO>();
         public int count { get; set; }
         public string resultCode { get; set; }
     }
